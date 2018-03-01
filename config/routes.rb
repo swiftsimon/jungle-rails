@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]    ##only: allows index or show routes
   resources :categories, only: [:show]
 
-  resource :cart, only: [:show] do
+  resource :cart, only: [:show] do    # the do nests resourses ex. users/user_id/photos/photo_id
     put    :add_item
     delete :remove_item
   end
 
   resources :orders, only: [:create, :show]
 
-  namespace :admin do
+  namespace :admin do   #now use the admin folder, the urls will be admin/paths
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]  ## all the paths created except:
     resources :categories, only: [:index, :new, :create]
