@@ -1,5 +1,12 @@
 <section class="cart-show">
 
+  <% @cart_total = 0 %>
+  <% if cart.size == 0 %>
+  <h2>Cart is Empty, so...</h2>
+  <div>
+    <h4><%= link_to 'Keep Shopping', '/' %></h4>
+  </div>
+  <% else %>
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
@@ -15,10 +22,10 @@
         </tr>
       </thead>
       <tbody>
-        <% @cart_total = 0 %>
-        <% cart.each do |product_id, details| %>
-          <%= render 'item', product_id: product_id, details: details %>
-        <% end %>
+          <% cart.each do |product_id, details| %>
+            <%= render 'item', product_id: product_id, details: details %>
+          <% end %>
+
       </tbody>
       <tfoot>
         <tr>
@@ -49,5 +56,6 @@
       <% end %>
     </div>
   </div>
+        <% end %>
 
 </section>

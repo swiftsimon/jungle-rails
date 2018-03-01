@@ -4,6 +4,7 @@ class CartsController < ApplicationController
   end
 
   def add_item
+
     product_id = params[:product_id].to_s
 
     item = cart[product_id] || { "quantity" => 0 }
