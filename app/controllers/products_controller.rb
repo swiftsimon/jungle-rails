@@ -6,8 +6,9 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find params[:id]
-  end
+    @review = Review.new
 
+  end
 end
 
 ## the def index will call the /views/products/index/html.erb

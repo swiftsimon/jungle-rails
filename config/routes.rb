@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   root to: 'products#index'  ## products controller, index action (/)
             ## links to ProductsController in App/controllers file
-  resources :products, only: [:index, :show]    ##only: allows index or show routes
+  resources :products, only: [:index, :show] do
+    resources :reviews, only: [:create]
+  end
+
   resources :categories, only: [:show]
 
   resource :cart, only: [:show] do    # the do nests resourses ex. users/user_id/photos/photo_id
