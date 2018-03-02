@@ -23,15 +23,17 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
-          <dt>Submit Review</dt>
-          <dd><%= form_for([@product, @review]) do |f| %>
-          <%= f.text_field :description %>
-          <%= f.select(:rating, options_for_select([ ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5] ])) %>
-          <%= f.submit "submit" %>
-          <% end %>
+          <% if current_user %>
+            <dt>Submit Review</dt>
+            <dd><%= form_for([@product, @review]) do |f| %>
+            <%= f.text_field :description %>
+            <%= f.select(:rating, options_for_select([ ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5] ])) %>
+            <%= f.submit "submit" %>
+            <% end %>
+            <% end %>
           </dd>
           <dt>Reviews</dt>
-          <dd></dd>
+          <dd>-Log in to create a review!-</dd>
           <% @product.reviews.each do |review| %>
           <dt><%= review.rating %> out of 5</dt>
           <dd><%= review.description %></dd>
