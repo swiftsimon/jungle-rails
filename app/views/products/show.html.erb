@@ -11,33 +11,38 @@
 
       <div class="col-sm-4">
         <%= image_tag @product.image.url, class: 'main-img' %>
+         <%= link_to add_item_cart_path(product_id: @product.id), class: 'btn btn-primary', method: :put do %>
+      <%= fa_icon "shopping-cart", text: 'Add' %>
+    <% end %>
       </div>
 
       <div class="col-sm-8">
         <dl class="dl-horizontal">
           <dt>Name</dt>
-          <dd><%= @product.name %></dd>
+            <dd><%= @product.name %></dd>
           <dt>Description</dt>
-          <dd><%= @product.description %></dd>
+            <dd><%= @product.description %></dd>
           <dt>Quantity</dt>
-          <dd><%= @product.quantity %></dd>
+            <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
+            <dd><%= @product.price %></dd>
           <% if current_user %>
             <dt>Submit Review</dt>
-            <dd><%= form_for([@product, @review]) do |f| %>
-            <%= f.text_field :description %>
-            <%= f.select(:rating, options_for_select([ ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5] ])) %>
-            <%= f.submit "submit" %>
-            <% end %>
-            <% end %>
-          </dd>
+              <dd><%= form_for([@product, @review]) do |f| %>
+              <%= f.text_field :description %>
+              <%= f.select(:rating, options_for_select([ ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5] ])) %>
+              <%= f.submit "submit" %>
+                <% end %>
+              <% end %>
+              </dd>
           <dt>Reviews</dt>
-          <dd>-Log in to create a review!-</dd>
+            <dd><i>Log in to create a review</i></dd>
           <% @product.reviews.each do |review| %>
-          <dt><%= review.rating %> out of 5</dt>
-          <dd><%= review.description %></dd>
-          <dd></dd>
+            <dd><%= pluralize review.rating, "Star"%><%="   " %><i><%= review.description %></i></dd>
+            <dd><% if current_user && review.user_id == current_user.id %>
+                <%= button_to "delete", review_path(review), method: :delete %>
+              <% end %>
+            </dd>
           <% end %>
         </dl>
       </div>

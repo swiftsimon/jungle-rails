@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  def index     # calls active controller to retrieve all Product
+  def index
     @products = Product.all.order(created_at: :desc)
   end
 
@@ -10,7 +10,3 @@ class ProductsController < ApplicationController
 
   end
 end
-
-## the def index will call the /views/products/index/html.erb
-
-## name should be PluralController  so ProductsController  UsersController
