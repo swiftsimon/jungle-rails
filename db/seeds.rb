@@ -134,3 +134,64 @@ cat3.products.create!({
 
 
 puts "DONE!"
+
+# Users
+
+User.create!({
+  name: "Simon",
+  email: "simon@email.com",
+  password: "password"
+  })
+
+User.create!({
+  name: "Fred",
+  email: "fred@email.com",
+  password: "password2"
+  })
+
+# Reviews
+
+prod1 = Product.find_by! name: 'Optimal Sleeping Bed'
+prod2 = Product.find_by! name: 'Electric Chair'
+prod3 = Product.find_by! name: 'Red Bookshelf'
+
+prod1.reviews.create!({
+  user_id: "1",
+  description: "Great Bed!",
+  rating: "5"
+  })
+
+prod2.reviews.create!({
+  user_id: "1",
+  description: "Great Chair!",
+  rating: "4"
+  })
+
+prod2.reviews.create!({
+  user_id: "2",
+  description: "Bad quality",
+  rating: "2"
+  })
+
+prod3.reviews.create!({
+  user_id: "1",
+  description: "Weird Bookshelf",
+  rating: "2"
+  })
+
+prod3.reviews.create!({
+  user_id: "2",
+  description: "Fun Bookshelf!",
+  rating: "4"
+  })
+
+
+
+
+
+
+
+
+
+
+
