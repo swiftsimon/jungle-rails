@@ -49,9 +49,6 @@ RSpec.describe Product, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is not valid when all fields are empty" do
-      expect(subject).to_not be_valid
-    end
   end
 end
 
