@@ -4,6 +4,9 @@
 
   <header class="page-header">
     <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
+    <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
   </header>
 
   <article class="product-detail">
@@ -26,6 +29,7 @@
             <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
             <dd><%= @product.price %></dd>
+
           <% if current_user %>
             <dt>Submit Review</dt>
               <dd><%= form_for([@product, @review]) do |f| %>

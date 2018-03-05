@@ -8,9 +8,10 @@ class ReviewsController < ApplicationController
     @review.product_id = params[:product_id]
 
     if @review.save
+      flash[:notice] = "Thanks for the review!"
       redirect_to product_path params[:product_id]
     else
-
+      flash[:notice] = "Review error, please try again"
       redirect_to product_path params[:product_id]
     end
 
