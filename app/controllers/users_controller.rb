@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to '/'
     else
+    flash[:failed] = "Login failed, all fields required. Password must be 8 characters"
     redirect_to '/signup'
     end
   end
